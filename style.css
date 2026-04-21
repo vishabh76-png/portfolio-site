@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+nav a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+/* Hero */
+header {
+  text-align: center;
+  padding: 100px 20px;
+}
+
+header button {
+  padding: 10px 20px;
+  background: #3b82f6;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Sections */
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Grid */
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.grid div {
+  padding: 20px;
+  background: #1e293b;
+  border-radius: 10px;
+}
+
+/* Portfolio boxes */
+.box {
+  width: 150px;
+  height: 100px;
+}
+
+/* Form */
+form {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form input, form textarea {
+  margin: 10px 0;
+  padding: 10px;
+}
+
+form button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+}
