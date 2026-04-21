@@ -28,3 +28,29 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
     const result = await response.json();
     document.getElementById('response-msg').innerText = result.status;
 });
+function payNow(amount) {
+    const options = {
+        "key": "rzp_test_SgELjQDk9aQyun", // Enter your Key ID here
+        "amount": amount * 100, // Razorpay works in paise (7000 * 100)
+        "currency": "INR",
+        "name": "Nexora Web",
+        "description": "Freelance Web Development Services",
+        "image": "https://your-logo-url.com/logo.png", // Optional: link to your logo
+        "handler": function (response) {
+            // This runs AFTER a successful payment
+            alert("Payment Successful! ID: " + response.razorpay_payment_id);
+            // You can also send this ID to your backend to save it
+        },
+        "prefill": {
+            "name": "", // Leave empty so customer fills it
+            "email": "",
+            "contact": ""
+        },
+        "theme": {
+            "color": "#0070f3" // Matches your Nexora Blue
+        }
+    };
+
+    const rzp1 = new Razorpay(options);
+    rzp1.open();
+}
