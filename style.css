@@ -1,84 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
+:root {
+    --bg: #050505;
+    --card-bg: #111111;
+    --primary: #0070f3;
+    --accent: #ff0080;
+    --text: #ffffff;
+    --text-dim: #a1a1a1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
 }
 
-/* Navbar */
+/* NAVIGATION - Clean & Floating */
 nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 10%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-nav a {
-  color: white;
-  margin-left: 15px;
-  text-decoration: none;
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
 }
 
-/* Hero */
-header {
-  text-align: center;
-  padding: 100px 20px;
+.logo-icon {
+    transition: transform 0.3s ease;
 }
 
-header button {
-  padding: 10px 20px;
-  background: #3b82f6;
-  border: none;
-  color: white;
-  cursor: pointer;
+.logo-container:hover .logo-icon {
+    transform: rotate(-10deg) scale(1.1);
 }
 
-/* Sections */
-section {
-  padding: 60px 20px;
-  text-align: center;
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    text-transform: uppercase;
 }
 
-/* Grid */
-.grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+.logo-text span {
+    color: var(--primary);
+    margin-left: 2px;
 }
 
-.grid div {
-  padding: 20px;
-  background: #1e293b;
-  border-radius: 10px;
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem; /* Increased gap between links */
 }
 
-/* Portfolio boxes */
-.box {
-  width: 150px;
-  height: 100px;
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 1.1rem; /* Increased from default */
+    font-weight: 600;    /* Made them slightly bolder */
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-/* Form */
+/* Hover effect: a nice underline that grows from the center */
+.nav-links a:hover {
+    color: var(--text);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background: var(--primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* HERO SECTION - Big & Impactful */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10%;
+}
+
+h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+/* BUTTONS */
+.cta-btn {
+    background: white;
+    color: black;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* CONTACT SECTION - Professional Form */
+#contact {
+    padding: 100px 10%;
+    background: var(--card-bg);
+}
+
+#contact h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
 form {
-  max-width: 400px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-form input, form textarea {
-  margin: 10px 0;
-  padding: 10px;
+input, textarea {
+    width: 100%;
+    padding: 1.2rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary);
 }
 
 form button {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 10px;
+    background: var(--primary);
+    color: white;
+    padding: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.3s;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 20px;
+form button:hover {
+    opacity: 0.9;
+}
+
+/* Scroll Animation Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 4rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 10%;
+}
+
+.service-card {
+    background: #111;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    border: 1px solid #222;
+    transition: 0.4s;
+    text-align: center;
+}
+
+.service-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-10px);
+    background: #161616;
+}
+
+.service-card i {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    color: var(--text-dim);
 }
