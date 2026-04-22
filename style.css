@@ -37,10 +37,58 @@ nav {
 .nav-links a:hover { color: var(--primary); }
 
 /* Hero */
-.hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 10%; }
-h1 { font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; margin-bottom: 1.5rem; }
-.gradient-text { background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2rem; }
+/* --- UPDATED HERO SECTION WITH LIVE BACKGROUND --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10%;
+    position: relative;
+    overflow: hidden;
+    /* This creates a soft animated gradient background */
+    background: linear-gradient(-45deg, #ffffff, #f0f7ff, #fff0f5, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+/* The "Live" animated particles */
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: 0;
+    background-image: 
+        radial-gradient(circle, var(--primary) 1px, transparent 1px),
+        radial-gradient(circle, var(--accent) 1px, transparent 1px);
+    background-size: 50px 50px, 80px 80px;
+    background-position: 0 0, 40px 40px;
+    opacity: 0.15;
+    animation: particleMove 20s linear infinite;
+}
+
+/* Ensure text stays on top of the animation */
+.hero h1, .hero p, .hero .hero-btns {
+    position: relative;
+    z-index: 1;
+}
+
+/* ANIMATION KEYFRAMES */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes particleMove {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
 /* Buttons */
 .cta-btn {
