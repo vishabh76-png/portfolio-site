@@ -26,18 +26,20 @@ function payNow(amount) {
 // 3. CONTACT FORM (GMAIL VIA RENDER)
 document.getElementById('contact-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+    
     const btn = e.target.querySelector('button');
     const data = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
         message: document.getElementById('message').value
     };
 
     btn.innerText = "Sending...";
 
     try {
-        // REPLACE THE LINK BELOW WITH YOUR REAL RENDER URL
-        const renderURL = 'https://portfolio-site-fbcd.onrender.com'; 
+        // ADDED /contact TO THE END OF THE URL
+        const renderURL = 'https://portfolio-site-fbcd.onrender.com/contact'; 
 
         const response = await fetch(renderURL, {
             method: 'POST',
@@ -48,10 +50,13 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
         if (response.ok) {
             alert("Success! I'll get back to you soon.");
             e.target.reset();
+        } else {
+            alert("Server error. Please try again.");
         }
     } catch (err) {
+        console.error(err);
         alert("Error connecting to server.");
     } finally {
         btn.innerText = "Send Message";
     }
-});
+}); // THE CLOSING BRACKET MUST BE HERE AT THE VERY END

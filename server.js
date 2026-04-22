@@ -16,16 +16,22 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/contact', (req, res) => {
-    const { name, email, message } = req.body;
+    // 1. Make sure 'phone' is included in this list:
+    const { name, email, phone, message } = req.body; 
+
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: process.env.EMAIL_USER,
         subject: `Nexora Inquiry: ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`
+        // 2. Update the 'text' to include the phone number:
+        text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage: ${message}`
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
-        if (error) return res.status(500).json({ status: "Error" });
+        if (error) {
+            console.log(error);
+            return res.status(500).json({ status: "Error" });
+        }
         res.json({ status: "Success" });
     });
 });

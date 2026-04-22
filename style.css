@@ -30,14 +30,40 @@ nav {
 .logo-text span { color: var(--primary); }
 
 .nav-links { display: flex; list-style: none; gap: 2.5rem; }
+/* --- SMOOTH UNDERLINE HOVER EFFECT --- */
 .nav-links a {
-    text-decoration: none; color: var(--text-dim); font-weight: 600;
-    transition: 0.3s; position: relative;
+    text-decoration: none;
+    color: var(--text-dim); /* Use the dimmed color by default */
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative; /* Necessary to position the underline */
+    padding: 5px 0;
 }
-.nav-links a:hover { color: var(--primary); }
 
+/* The Underline (hidden by default) */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0; /* Start at zero width */
+    height: 2px; /* Thickness of the line */
+    bottom: 0;
+    left: 50%; /* Position at the midpoint */
+    background: var(--primary); /* Uses your Electric Blue */
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%); /* Keeps it centered as it grows */
+}
+
+/* Hover State */
+.nav-links a:hover {
+    color: var(--primary); /* Text turns blue too */
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* Expands to full width */
+}
 /* Hero */
 /* --- UPDATED HERO SECTION WITH LIVE BACKGROUND --- */
+/* --- FIXED HERO SECTION --- */
 .hero {
     height: 100vh;
     display: flex;
@@ -48,13 +74,14 @@ nav {
     padding: 0 10%;
     position: relative;
     overflow: hidden;
-    /* This creates a soft animated gradient background */
+    /* Added a gap to prevent overlapping */
+    gap: 2rem; 
     background: linear-gradient(-45deg, #ffffff, #f0f7ff, #fff0f5, #ffffff);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }
 
-/* The "Live" animated particles */
+/* Background dots - Added pointer-events: none so buttons remain clickable */
 .hero::before {
     content: "";
     position: absolute;
@@ -63,19 +90,51 @@ nav {
     top: -50%;
     left: -50%;
     z-index: 0;
+    pointer-events: none; /* IMPORTANT: prevents the background from blocking clicks */
     background-image: 
         radial-gradient(circle, var(--primary) 1px, transparent 1px),
         radial-gradient(circle, var(--accent) 1px, transparent 1px);
     background-size: 50px 50px, 80px 80px;
     background-position: 0 0, 40px 40px;
-    opacity: 0.15;
-    animation: particleMove 20s linear infinite;
+    opacity: 0.1; /* Lowered opacity for a cleaner look */
+    animation: particleMove 40s linear infinite; /* Slowed it down for better vibe */
 }
 
-/* Ensure text stays on top of the animation */
-.hero h1, .hero p, .hero .hero-btns {
+/* Ensure text is separated and clear */
+.hero h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0; /* Reset margins */
     position: relative;
     z-index: 1;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    max-width: 650px;
+    margin: 0; /* Reset margins */
+    position: relative;
+    z-index: 1;
+}
+
+.hero .hero-btns {
+    margin-top: 1rem;
+    position: relative;
+    z-index: 10; /* Keeps button on very top */
+}
+
+/* KEEP YOUR ANIMATION KEYFRAMES BELOW THIS */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes particleMove {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* ANIMATION KEYFRAMES */
@@ -112,9 +171,22 @@ section { padding: 100px 10%; }
 .service-card:hover, .price-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
 .service-card i { color: var(--primary); margin-bottom: 1.5rem; width: 40px; height: 40px; }
+/* --- New Section Background --- */
+#pricing {
+    background-color: #f4f8ff; /* The Soft Ice Blue color */
+    border-top: 1px solid #e1e8f0;
+    border-bottom: 1px solid #e1e8f0;
+}
 
+/* This makes sure the pricing cards stay pure white so they "pop" */
+#pricing .price-card {
+    background: #ffffff;
+}
 /* Pricing Specifics */
-.price-card.featured { border: 2px solid var(--primary); position: relative; }
+.price-card.featured {
+    /* your existing code... */
+    box-shadow: 0 20px 40px rgba(0, 112, 243, 0.15); /* Adds a blue-tinted glow */
+}
 .popular-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; }
 .price { font-size: 2.5rem; font-weight: 900; margin: 1.5rem 0; }
 .price span { font-size: 1rem; color: var(--text-dim); }
