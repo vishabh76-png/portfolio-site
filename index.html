@@ -3,42 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexora Web | Premium Freelance Solutions</title>
+    <title>Nexora Web | Premium Full-Stack Solutions</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 
     <nav>
-        <a href="#home" style="text-decoration: none;">
-            <div class="logo-container">
-                <svg class="logo-icon" width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="100" height="100" rx="20" fill="url(#paint0_linear)"/>
-                    <path d="M30 70V30L50 50L70 30V70" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-                    <defs>
-                        <linearGradient id="paint0_linear" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#0070f3"/>
-                            <stop offset="1" stop-color="#ff0080"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <div class="logo-text">NEXORA<span>WEB</span></div>
-            </div>
-        </a>
+        <div class="logo-container">
+            <div class="logo-text">NEXORA<span>WEB</span></div>
+        </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#services">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <header id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="reveal">Building Digital <span class="gradient-text">Experiences.</span></h1>
-            <p class="reveal">Freelance Web Developer specializing in Full-Stack solutions.</p>
-            <a href="#services" class="cta-btn">View My Work</a>
+        <h1 class="reveal">Next-Gen <span class="gradient-text">Web Apps.</span></h1>
+        <p class="reveal">High-performance Full-Stack development for modern brands looking to scale.</p>
+        <div class="hero-btns reveal">
+            <a href="#pricing" class="cta-btn">View Packages</a>
         </div>
     </header>
 
@@ -47,120 +36,69 @@
         <div class="services-grid">
             <div class="service-card reveal">
                 <i data-lucide="layout"></i>
-                <h3>Frontend Dev</h3>
-                <p>Modern, responsive interfaces using React, Tailwind, and high-end CSS animations.</p>
+                <h3>Frontend</h3>
+                <p>Speed-optimized, pixel-perfect interfaces built with modern React standards.</p>
             </div>
             <div class="service-card reveal">
-                <i data-lucide="database"></i>
-                <h3>Backend Systems</h3>
-                <p>Secure APIs and database architecture using Node.js, Express, and MongoDB.</p>
+                <i data-lucide="server"></i>
+                <h3>Backend</h3>
+                <p>Robust Node.js logic and secure API architectures for data integrity.</p>
             </div>
             <div class="service-card reveal">
                 <i data-lucide="zap"></i>
                 <h3>SEO & Speed</h3>
-                <p>Optimizing your site to rank #1 on Google and load in under a second.</p>
+                <p>Maximizing performance scores and visibility on search engines.</p>
             </div>
         </div>
     </section>
-    <section id="process" class="reveal">
-    <h2 class="section-title">My Process<span>.</span></h2>
-    <div class="process-steps">
-        <div class="step">
-            <span class="step-num">01</span>
-            <h3>Discovery</h3>
-            <p>We discuss your goals, target audience, and the "vibe" of your brand.</p>
-        </div>
-        <div class="step">
-            <span class="step-num">02</span>
-            <h3>Design & Dev</h3>
-            <p>I build a fast, modern site using the latest tech like React or Node.js.</p>
-        </div>
-        <div class="step">
-            <span class="step-num">03</span>
-            <h3>Launch</h3>
-            <p>Your site goes live with SEO optimization and mobile-ready layouts.</p>
-        </div>
-    </div>
-</section>
-<section id="tech" class="reveal" style="text-align: center;">
-    <h2 class="section-title">The Stack<span>.</span></h2>
-    <div class="tech-icons">
-        <span class="tech-badge">HTML5</span>
-        <span class="tech-badge">CSS3</span>
-        <span class="tech-badge">JavaScript</span>
-        <span class="tech-badge">Node.js</span>
-        <span class="tech-badge">Express</span>
-        <span class="tech-badge">Git/GitHub</span>
-    </div>
-</section>
 
-<section id="pricing" class="reveal">
-    <h2 class="section-title">Investment<span>.</span></h2>
-    <div class="pricing-grid">
-        
-        <div class="price-card">
-            <h3>Essential</h3>
-            <div class="price">₹7,000<span>/project</span></div>
-            <ul>
-                <li>Single Page Landing</li>
-                <li>Fully Responsive</li>
-                <li>Basic SEO Setup</li>
-                <li>Contact Form Integration</li>
-            </ul>
-            <button onclick="payNow(7000)" class="buy-btn">Get Started</button>
+    <section id="pricing">
+        <h2 class="section-title reveal">Investment<span>.</span></h2>
+        <div class="pricing-grid">
+            <div class="price-card reveal">
+                <h3>Essential</h3>
+                <div class="price">₹7,000<span>/project</span></div>
+                <ul>
+                    <li>Single Page Landing</li>
+                    <li>Responsive Design</li>
+                    <li>Contact Form Setup</li>
+                </ul>
+                <button onclick="payNow(7000)" class="buy-btn">Get Started</button>
+            </div>
+            <div class="price-card featured reveal">
+                <div class="popular-tag">Best Value</div>
+                <h3>Professional</h3>
+                <div class="price">₹10,000<span>/project</span></div>
+                <ul>
+                    <li>Up to 5 Pages</li>
+                    <li>Custom CSS Animations</li>
+                    <li>Basic SEO Setup</li>
+                </ul>
+                <button onclick="payNow(10000)" class="buy-btn btn-primary">Choose Pro</button>
+            </div>
+            <div class="price-card reveal">
+                <h3>Enterprise</h3>
+                <div class="price">₹15,000<span>/project</span></div>
+                <ul>
+                    <li>Full-Stack Functionality</li>
+                    <li>Database Integration</li>
+                    <li>1 Month Support</li>
+                </ul>
+                <button onclick="payNow(15000)" class="buy-btn">Go Enterprise</button>
+            </div>
         </div>
+    </section>
 
-        <div class="price-card featured">
-            <div class="popular-tag">Best Value</div>
-            <h3>Professional</h3>
-            <div class="price">₹10,000<span>/project</span></div>
-            <ul>
-                <li>Up to 5 Pages</li>
-                <li>Custom CSS Animations</li>
-                <li>Speed Optimization</li>
-                <li>1 Month Free Support</li>
-            </ul>
-            <button onclick="payNow(10000)" class="buy-btn btn-primary">Choose Pro</button>
+    <section id="contact">
+        <div class="contact-box reveal">
+            <h2>Let's Work Together</h2>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <textarea id="message" placeholder="Project Details" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
         </div>
-
-        <div class="price-card">
-            <h3>Enterprise</h3>
-            <div class="price">₹15,000<span>/project</span></div>
-            <ul>
-                <li>Full-Stack Functionality</li>
-                <li>Custom Node.js Backend</li>
-                <li>Admin Dashboard</li>
-                <li>Database Integration</li>
-            </ul>
-            <button onclick="payNow(15000)" class="buy-btn btn-primary">Go Enterprise</button>
-        </div>
-
-    </div>
-</section>
-
-<section id="faq" class="reveal">
-    <h2 class="section-title">Common Questions<span>.</span></h2>
-    <div class="faq-container">
-        <div class="faq-item">
-            <h3>How long does a project take?</h3>
-            <p>Most landing pages take 1 week. Complex full-stack apps usually range from 3-6 weeks.</p>
-        </div>
-        <div class="faq-item">
-            <h3>Who owns the code?</h3>
-            <p>You do. Once the final payment is made, all source code is transferred to your GitHub account.</p>
-        </div>
-    </div>
-</section>
-
-    <section id="contact" class="reveal">
-        <h2 class="section-title">Let's Work Together<span>.</span></h2>
-        <form id="contact-form">
-            <input type="text" id="name" placeholder="Name" required>
-            <input type="email" id="email" placeholder="Email" required>
-            <textarea id="message" placeholder="Project Details" required></textarea>
-            <button type="submit" class="cta-btn">Send Message</button>
-        </form>
-        <div id="response-msg" style="text-align:center; margin-top: 1rem;"></div>
     </section>
 
     <script src="script.js"></script>

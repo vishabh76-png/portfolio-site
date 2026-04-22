@@ -1,56 +1,57 @@
-// Reveal Animation on Scroll
+// 1. SCROLL REVEAL
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
     });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Handle Form Submission to Backend
+// 2. RAZORPAY PAYMENT
+function payNow(amount) {
+    const options = {
+        "key": "rzp_test_SgELjQDk9aQyun", // Your Test Key
+        "amount": amount * 100, 
+        "currency": "INR",
+        "name": "Nexora Web",
+        "description": "Service Package Payment",
+        "handler": function (response) {
+            alert("Payment Successful! ID: " + response.razorpay_payment_id);
+        },
+        "theme": { "color": "#0070f3" }
+    };
+    const rzp = new Razorpay(options);
+    rzp.open();
+}
+
+// 3. CONTACT FORM (GMAIL VIA RENDER)
 document.getElementById('contact-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    const formData = {
+    const btn = e.target.querySelector('button');
+    const data = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         message: document.getElementById('message').value
     };
 
-    const response = await fetch('http://localhost:3000/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-    });
+    btn.innerText = "Sending...";
 
-    const result = await response.json();
-    document.getElementById('response-msg').innerText = result.status;
-});
-function payNow(amount) {
-    const options = {
-        "key": "rzp_test_SgELjQDk9aQyun", // Enter your Key ID here
-        "amount": amount * 100, // Razorpay works in paise (7000 * 100)
-        "currency": "INR",
-        "name": "Nexora Web",
-        "description": "Freelance Web Development Services",
-        "image": "https://your-logo-url.com/logo.png", // Optional: link to your logo
-        "handler": function (response) {
-            // This runs AFTER a successful payment
-            alert("Payment Successful! ID: " + response.razorpay_payment_id);
-            // You can also send this ID to your backend to save it
-        },
-        "prefill": {
-            "name": "", // Leave empty so customer fills it
-            "email": "",
-            "contact": ""
-        },
-        "theme": {
-            "color": "#0070f3" // Matches your Nexora Blue
+    try {
+        // REPLACE THE LINK BELOW WITH YOUR REAL RENDER URL
+        const renderURL = 'https://portfolio-site-fbcd.onrender.com'; 
+
+        const response = await fetch(renderURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert("Success! I'll get back to you soon.");
+            e.target.reset();
         }
-    };
-
-    const rzp1 = new Razorpay(options);
-    rzp1.open();
-}
+    } catch (err) {
+        alert("Error connecting to server.");
+    } finally {
+        btn.innerText = "Send Message";
+    }
+});
