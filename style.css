@@ -230,59 +230,68 @@ form button { background: var(--primary); color: white; padding: 1.2rem; border:
     font-weight: 800;
 }
 
-/* --- Desktop Styles --- */
+/* --- Global Navbar Style --- */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     z-index: 1000;
     box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1300px; /* Limits how far they spread on big screens */
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* Pushes logo left, links right */
+    justify-content: space-between; /* THE KEY: Pushes logo left, menu right */
     align-items: center;
-    padding: 15px 5%;
+    padding: 18px 5%; /* Adds the "slight" gap from the screen edges */
 }
 
 .logo {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: -1px;
+    color: #000;
+    cursor: pointer;
 }
 
 .logo span { color: #0070f3; }
 
+/* --- Desktop Menu --- */
 .nav-links {
     display: flex;
-    align-items: center;
     list-style: none;
-    gap: 30px;
+    gap: 35px; /* Spacing between links */
+    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #333;
     font-weight: 600;
-    font-size: 0.9rem;
-    transition: 0.3s;
+    font-size: 0.95rem;
+    transition: 0.3s ease;
 }
 
+.nav-links a:hover { color: #0070f3; }
+
+/* The Contact Button */
 .nav-btn {
     background: #0070f3;
     color: #fff !important;
-    padding: 10px 22px;
+    padding: 10px 25px;
     border-radius: 50px;
+    transition: 0.3s;
 }
 
-/* --- The Mobile Fix --- */
+.nav-btn:hover { background: #0056b3; transform: translateY(-2px); }
+
+/* --- Hamburger Icon (Hidden on Laptop) --- */
 .hamburger {
-    display: none; /* Hidden on desktop */
+    display: none;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
@@ -291,23 +300,28 @@ form button { background: var(--primary); color: white; padding: 1.2rem; border:
 .bar {
     width: 25px;
     height: 3px;
-    background-color: #333;
-    border-radius: 10px;
+    background: #333;
+    border-radius: 5px;
     transition: 0.3s;
 }
 
+/* --- MOBILE RESPONSIVE (The Big Fix) --- */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex; /* Show on mobile */
-        z-index: 1001;
+        display: flex; /* Show hamburger on mobile */
     }
 
-    /* Transform horizontal links into a vertical side-drawer */
+    /* Puts gap between Logo and Hamburger */
+    .nav-container {
+        justify-content: space-between; 
+    }
+
+    /* Mobile Side Menu */
     .nav-links {
         position: fixed;
-        right: -100%; /* Hidden off-screen */
+        right: -100%; /* Hide off-screen */
         top: 0;
-        width: 70%;
+        width: 75%;
         height: 100vh;
         background: #fff;
         flex-direction: column;
@@ -316,12 +330,15 @@ form button { background: var(--primary); color: white; padding: 1.2rem; border:
         transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    /* When menu is open */
     .nav-links.active {
-        right: 0;
+        right: 0; /* Slide in */
     }
 
-    /* Animation for the 'X' icon */
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    /* Animate Hamburger to X */
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
