@@ -63,9 +63,8 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
 
 function toggleMenu() {
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
+    const navMenu = document.getElementById('nav-menu');
     
-    // This toggles the 'active' class we created in CSS
     hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
+    navMenu.classList.toggle('active');
 }

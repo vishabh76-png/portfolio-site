@@ -230,66 +230,99 @@ form button { background: var(--primary); color: white; padding: 1.2rem; border:
     font-weight: 800;
 }
 
-/* --- Desktop Styles (Keep these) --- */
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
+/* --- Desktop Styles --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Pushes logo left, links right */
+    align-items: center;
+    padding: 15px 5%;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span { color: #0070f3; }
 
 .nav-links {
     display: flex;
+    align-items: center;
     list-style: none;
-    gap: 2rem;
+    gap: 30px;
 }
 
-/* --- Mobile Fix (Apply for screens under 768px) --- */
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.nav-btn {
+    background: #0070f3;
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 50px;
+}
+
+/* --- The Mobile Fix --- */
+.hamburger {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
 @media (max-width: 768px) {
     .hamburger {
-        display: block; /* Show hamburger */
-        cursor: pointer;
+        display: flex; /* Show on mobile */
         z-index: 1001;
     }
 
-    .bar {
-        width: 25px;
-        height: 3px;
-        background-color: #333;
-        margin: 5px 0;
-        transition: 0.4s;
-    }
-
-    /* This turns the horizontal nav into a vertical side-menu */
+    /* Transform horizontal links into a vertical side-drawer */
     .nav-links {
         position: fixed;
-        right: -100%; /* Hide off-screen */
+        right: -100%; /* Hidden off-screen */
         top: 0;
+        width: 70%;
         height: 100vh;
-        width: 70%; /* Side menu width */
-        background: white;
+        background: #fff;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         box-shadow: -10px 0 30px rgba(0,0,0,0.1);
         transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        z-index: 1000;
     }
 
-    /* When the menu is active, slide it in */
+    /* When menu is open */
     .nav-links.active {
         right: 0;
     }
 
-    /* Hamburger Animation to 'X' */
-    .hamburger.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+    /* Animation for the 'X' icon */
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-}
-
-/* Hide hamburger on Desktop */
-@media (min-width: 769px) {
-    .hamburger {
-        display: none;
-    }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
