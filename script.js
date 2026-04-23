@@ -60,3 +60,12 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
         btn.innerText = "Send Message";
     }
 }); // THE CLOSING BRACKET MUST BE HERE AT THE VERY END
+
+function toggleMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    
+    // This toggles the 'active' class we created in CSS
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+}
